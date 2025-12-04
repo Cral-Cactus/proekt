@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виртуален свят – Контакти</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="images/virtual-world.ico">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="contact-page">
+
+    <header>
+        <div class="inner">
+            <div class="logo">
+                <img src="images/virtual-world.webp" alt="Лого на Виртуален свят"
+                    style="height:32px; margin-right:0.45rem; vertical-align:middle;">
+                Виртуален свят
+            </div>
+            <button class="nav-toggle" aria-label="Превключване на менюто">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Начало</a></li>
+                    <li><a href="hardware.html">Хардуер</a></li>
+                    <li><a href="software.html">Софтуер</a></li>
+                    <li><a href="profit.html">Профит калкулатор</a></li>
+                    <li><a href="contact.html" class="active">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="fade-in">
+            <h1>Свържи се с „Виртуален свят“</h1>
+            <p class="text-justify">
+                Ако имаш идея за rig, въпрос за хардуер или искаш да споделиш обратна връзка,
+                остави ни съобщение. Ще се постараем да отговорим възможно най-скоро.
+            </p>
+        </section>
+
+        <section class="fade-in delayed">
+            <h2>Форма за запитване</h2>
+
+            <form class="contact-form" action="#" method="post">
+                <div class="row">
+                    <div class="field">
+                        <label for="name">Име</label>
+                        <input type="text" id="name" name="name" placeholder="Иван Петров">
+                    </div>
+                    <div class="field">
+                        <label for="email">Имейл</label>
+                        <input type="email" id="email" name="email" placeholder="ime@abv.bg">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="field">
+                        <label for="experience">Опит с крипто</label>
+                        <select id="experience" name="experience">
+                            <option value="none">Тепърва започвам</option>
+                            <option value="basic">Имам базови познания</option>
+                            <option value="advanced">Копая/търгувам активно</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="budget">Месечен бюджет за ток (€)</label>
+                        <input type="number" id="budget" name="budget" min="0" step="10" placeholder="150">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="message">С какво можем да помогнем?</label>
+                    <textarea id="message" name="message"
+                        placeholder="Накратко – хардуер, профит, софтуер, нещо друго."></textarea>
+                </div>
+
+                <div class="checkbox-line">
+                    <input type="checkbox" id="agree" name="agree">
+                    <label for="agree">Съгласен/на съм личните ми данни да се използват за връзка с мен.</label>
+                </div>
+
+                <button type="submit">Изпрати запитване</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Препоръчани ресурси</h2>
+            <ul class="checklist">
+                <li><a href="https://whattomine.com" target="_blank" rel="noopener">WhatToMine – калкулатор за
+                        копаене</a></li>
+                <li><a href="https://www.nicehash.com" target="_blank" rel="noopener">NiceHash – пазар за хашрейт</a>
+                </li>
+                <li><a href="https://hashrate.no" target="_blank" rel="noopener">Hashrate.no – статистики за алгоритми и
+                        монети</a></li>
+            </ul>
+        </section>
+
+        <a href="#top" class="back-to-top">Връщане в началото</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Виртуален свят. Всички права запазени.</p>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (navToggle && mainNav) {
+            navToggle.addEventListener('click', function () {
+                mainNav.classList.toggle('open');
+                navToggle.classList.toggle('open');
+            });
+            
+            mainNav.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    mainNav.classList.remove('open');
+                    navToggle.classList.remove('open');
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

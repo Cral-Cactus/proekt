@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виртуален свят – Хардуер</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="images/virtual-world.ico">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="inner">
+            <div class="logo">
+                <img src="images/virtual-world.webp" alt="Лого на Виртуален свят"
+                    style="height:32px; margin-right:0.45rem; vertical-align:middle;">
+                Виртуален свят
+            </div>
+            <button class="nav-toggle" aria-label="Превключване на менюто">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Начало</a></li>
+                    <li><a href="hardware.html" class="active">Хардуер</a></li>
+                    <li><a href="software.html">Софтуер</a></li>
+                    <li><a href="profit.html">Профит калкулатор</a></li>
+                    <li><a href="contact.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="fade-in">
+            <h1>Хардуер за крипто копачки</h1>
+            <p class="text-justify">
+                Добрата конфигурация започва от стабилен хардуер. Тук ще видиш основните
+                компоненти, върху които стъпва един GPU rig или ASIC решение.
+            </p>
+
+            <div class="columns">
+                <div class="column">
+                    <h3>Видеокарти (GPU)</h3>
+                    <p>
+                        Сърцето на GPU rig-а. Избирай според хашрейта, консумацията и цената.
+                        Популярни са GeForce RTX и Radeon RX сериите.
+                    </p>
+                    <ul class="checklist">
+                        <li>Баланс между цена и хашрейт</li>
+                        <li>Добро охлаждане и надеждни вентилатори</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Захранване (PSU)</h3>
+                    <p>
+                        Захранването трябва да държи товара 24/7. Препоръчват се модели с
+                        висок клас ефективност и достатъчно PCIe конектори.
+                    </p>
+                    <ul class="checklist">
+                        <li>80+ Gold или по-висок сертификат</li>
+                        <li>Бранд с добра репутация</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Рамка и охлаждане</h3>
+                    <p>
+                        Отворена рамка, правилно разпределени вентилатори и чист въздушен поток
+                        водят до по-ниски температури и по-малко проблеми.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-in delayed">
+            <h2>Примерен mining rig</h2>
+            <div class="card">
+                <img src="images/mining-farm.jpg" alt="Примерна крипто ферма с няколко mining rig-а в редица"
+                    style="width:100%; border-radius:16px; object-fit:cover; max-height:320px; margin-bottom:0.5rem;">
+                <p class="small-note">
+                    Пример за ферма с няколко еднакви рамки. Всеки rig съдържа множество ASIC копачки, оптимизирани за
+                    различни алгоритми.
+                </p>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section>
+            <h2>GPU rig срещу ASIC копачка</h2>
+            <p>
+                Преди да инвестираш е полезно да сравниш двата типа решения:
+            </p>
+
+            <div class="table-responsive">
+                <table class="rig-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Критерий</th>
+                            <th colspan="2">Типична конфигурация</th>
+                            <th rowspan="2">Коментар</th>
+                        </tr>
+                        <tr>
+                            <th>GPU rig</th>
+                            <th>ASIC копачка</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Производителност</td>
+                            <td>Добър хашрейт за няколко алгоритъма</td>
+                            <td>Много висок за един алгоритъм</td>
+                            <td>ASIC е по-бърз, но по-ограничен</td>
+                        </tr>
+                        <tr>
+                            <td>Гъвкавост</td>
+                            <td>Можеш да сменяш монети и алгоритми</td>
+                            <td>Вързан към конкретен алгоритъм</td>
+                            <td>GPU е по-гъвкав при промяна на пазара</td>
+                        </tr>
+                        <tr>
+                            <td>Шум</td>
+                            <td>Среден, зависи от охлаждането</td>
+                            <td>Много шумен</td>
+                            <td>ASIC рядко стои в жилищно помещение</td>
+                        </tr>
+                        <tr>
+                            <td>Консумация на ток</td>
+                            <td>Зависи от броя карти и TDP</td>
+                            <td>Висока, но ефективна на хаш</td>
+                            <td>И в двата случая токът е ключов разход</td>
+                        </tr>
+                        <tr>
+                            <td>Препродажба</td>
+                            <td>GPU може да се ползва за игри или работа</td>
+                            <td>ASIC е почти само за копаене</td>
+                            <td>GPU rig пази по-добре стойността си</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <a href="#top" class="back-to-top">Връщане в началото</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Виртуален свят. Всички права запазени。</p>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (navToggle && mainNav) {
+            navToggle.addEventListener('click', function () {
+                mainNav.classList.toggle('open');
+                navToggle.classList.toggle('open');
+            });
+            
+            mainNav.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    mainNav.classList.remove('open');
+                    navToggle.classList.remove('open');
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

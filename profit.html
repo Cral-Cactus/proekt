@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виртуален свят – Профит калкулатор</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="images/virtual-world.ico">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="inner">
+            <div class="logo">
+                <img src="images/virtual-world.webp" alt="Лого на Виртуален свят"
+                    style="height:32px; margin-right:0.45rem; vertical-align:middle;">
+                Виртуален свят
+            </div>
+            <button class="nav-toggle" aria-label="Превключване на менюто">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Начало</a></li>
+                    <li><a href="hardware.html">Хардуер</a></li>
+                    <li><a href="software.html">Софтуер</a></li>
+                    <li><a href="profit.html" class="active">Профит калкулатор</a></li>
+                    <li><a href="contact.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="fade-in">
+            <h1>Профит калкулатор за твоя rig</h1>
+            <p class="text-justify">
+                Тук можеш бързо да провериш дали дадена конфигурация има шанс да е на плюс.
+                Попълни полетата и виж дневната и месечна печалба, както и ориентировъчния
+                срок за изплащане на хардуера.
+            </p>
+            <p class="small-note">
+                Данните са примерни и не са инвестиционен съвет. Реалната доходност зависи от
+                курса на монетите, трудността на мрежата, такси и пазара като цяло.
+            </p>
+        </section>
+
+        <section class="fade-in delayed">
+            <div class="calculator">
+                <form id="calc-form" class="calc-grid">
+                    <div class="calc-field">
+                        <label for="power">Мощност на рига (W)</label>
+                        <input type="number" id="power" name="power" min="0" value="800">
+                        <div class="calc-hint">Пример: 800W за rig с няколко GPU.</div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label for="hours">Часове работа на ден</label>
+                        <input type="number" id="hours" name="hours" min="0" max="24" value="24">
+                        <div class="calc-hint">Обикновено 24 часа, ако работи нон-стоп.</div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label for="price">Цена на тока (€/kWh)</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0" value="0.25">
+                        <div class="calc-hint">Пример: 0.25 € / kWh.</div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label for="revenue">Приход от копаене на ден (€)</label>
+                        <input type="number" id="revenue" name="revenue" step="0.01" min="0" value="6">
+                        <div class="calc-hint">Колко очакваш да изкарваш на ден.</div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label for="hardware">Цена на хардуера (€)</label>
+                        <input type="number" id="hardware" name="hardware" step="1" min="0" value="2000">
+                        <div class="calc-hint">Общата сума, която си вложил в rig-а.</div>
+                    </div>
+
+                    <div class="calc-actions">
+                        <button type="submit" class="btn btn-primary">Изчисли профита</button>
+                        <button type="reset" class="btn btn-ghost" id="reset-btn">Нулирай</button>
+                    </div>
+                </form>
+
+                <div class="calc-grid">
+                    <div id="results" class="calc-results">
+                        <div class="calc-results-row">
+                            <span>Консумация на ден:</span>
+                            <span class="value" id="kwhPerDay">–</span>
+                        </div>
+                        <div class="calc-results-row">
+                            <span>Разход за ток / ден:</span>
+                            <span class="value" id="costPerDay">–</span>
+                        </div>
+                        <div class="calc-results-row">
+                            <span>Печалба / ден:</span>
+                            <span class="value" id="profitPerDay">–</span>
+                        </div>
+                        <div class="calc-results-row">
+                            <span>Печалба / месец (~30 дни):</span>
+                            <span class="value" id="profitPerMonth">–</span>
+                        </div>
+                        <div class="calc-results-row">
+                            <span>Ориентировъчно изплащане на хардуера:</span>
+                            <span class="value" id="roi">–</span>
+                        </div>
+                        <p class="calc-highlight" id="summaryText"></p>
+                    </div>
+
+                    <p class="small-note">
+                        Ако печалбата на ден е отрицателна или нулева, rig-ът реално не се изплаща
+                        при въведените параметри.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section>
+            <h2>Примерни сценарии</h2>
+            <p>
+                При 800W rig и 6 € приход на ден се получава приблизително:
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Цена на ток (€ / kWh)</th>
+                        <th>Разход ток / ден</th>
+                        <th>Печалба / ден</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0.15</td>
+                        <td>2.88 €</td>
+                        <td>3.12 €</td>
+                    </tr>
+                    <tr>
+                        <td>0.25</td>
+                        <td>4.80 €</td>
+                        <td>1.20 €</td>
+                    </tr>
+                    <tr>
+                        <td>0.35</td>
+                        <td>6.72 €</td>
+                        <td>-0.72 € (на загуба)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <a href="#top" class="back-to-top">Връщане в началото</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Виртуален свят. Всички права запазени.</p>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (navToggle && mainNav) {
+            navToggle.addEventListener('click', function () {
+                mainNav.classList.toggle('open');
+                navToggle.classList.toggle('open');
+            });
+            
+            mainNav.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    mainNav.classList.remove('open');
+                    navToggle.classList.remove('open');
+                });
+            });
+        }
+
+        function formatNumber(num) {
+            if (!isFinite(num)) return "–";
+            return `${num.toFixed(2).replace(".", ",")} €`;
+        }
+
+        function formatKWh(num) {
+            if (!isFinite(num)) return "–";
+            return `${num.toFixed(2).replace(".", ",")} kWh`;
+        }
+
+        function formatDaysToMonths(days) {
+            if (!isFinite(days) || days <= 0) return "–";
+            const months = days / 30;
+            if (months < 1) {
+                return `${days.toFixed(0)} дни`;
+            }
+            return `${months.toFixed(1).replace(".", ",")} месеца`;
+        }
+
+        function calculateProfit(event) {
+            if (event) event.preventDefault();
+
+            const power = parseFloat(document.getElementById("power").value) || 0;
+            const hours = parseFloat(document.getElementById("hours").value) || 0;
+            const price = parseFloat(document.getElementById("price").value) || 0;
+            const revenue = parseFloat(document.getElementById("revenue").value) || 0;
+            const hardware = parseFloat(document.getElementById("hardware").value) || 0;
+            const powerKW = power / 1000;
+            const kwhPerDay = powerKW * hours;
+            const costPerDay = kwhPerDay * price;
+            const profitPerDay = revenue - costPerDay;
+            const profitPerMonth = profitPerDay * 30;
+            const roiDays = profitPerDay > 0 ? hardware / profitPerDay : Infinity;
+            const results = document.getElementById("results");
+            const kwhPerDayEl = document.getElementById("kwhPerDay");
+            const costPerDayEl = document.getElementById("costPerDay");
+            const profitPerDayEl = document.getElementById("profitPerDay");
+            const profitPerMonthEl = document.getElementById("profitPerMonth");
+            const roiEl = document.getElementById("roi");
+            const summaryText = document.getElementById("summaryText");
+
+            kwhPerDayEl.textContent = formatKWh(kwhPerDay);
+            costPerDayEl.textContent = formatNumber(costPerDay);
+            profitPerDayEl.textContent = formatNumber(profitPerDay);
+            profitPerMonthEl.textContent = formatNumber(profitPerMonth);
+            roiEl.textContent = profitPerDay > 0 && hardware > 0 ? formatDaysToMonths(roiDays) : "–";
+
+            let summary = "";
+
+            if (profitPerDay > 0.01) {
+                summary = `При тези стойности rig-ът е на печалба около ${profitPerDay.toFixed(2).replace(".", ",")} € на ден.`;
+
+                if (hardware > 0 && isFinite(roiDays)) {
+                    summary += ` Ориентировъчен срок за изплащане – около ${formatDaysToMonths(roiDays)}.`;
+                }
+            } else if (profitPerDay < -0.01) {
+                summary = "При тези стойности rig-ът е на загуба – разходите за ток са по-високи от прихода.";
+            } else {
+                summary = "Rig-ът е близо до нулата – практически не генерира значима печалба.";
+            }
+
+            summaryText.textContent = summary;
+            results.classList.add("visible");
+        }
+
+        document.getElementById("calc-form").addEventListener("submit", calculateProfit);
+        document.getElementById("calc-form").addEventListener("input", calculateProfit);
+
+        document.getElementById("reset-btn").addEventListener("click", function () {
+            setTimeout(function () {
+                document.getElementById("power").value = 800;
+                document.getElementById("hours").value = 24;
+                document.getElementById("price").value = 0.25;
+                document.getElementById("revenue").value = 6;
+                document.getElementById("hardware").value = 2000;
+
+                calculateProfit();
+            }, 0);
+        });
+
+        window.addEventListener("DOMContentLoaded", calculateProfit);
+    </script>
+</body>
+
+</html>
